@@ -24,5 +24,9 @@ Route::post('auth/register', 'Auth\AuthController@postRegister');
 
 // Tasks...
 Route::get('/', 'TaskController@index');
-Route::post('/task', 'TaskController@store');
-Route::delete('/task/{task}', 'TaskController@destroy');
+Route::post('task', 'TaskController@store');
+Route::delete('task/{task}', 'TaskController@destroy');
+
+Route::get('sandbox/{name?}', function($name = null) {
+  return view('sandbox.sandbox', ['data' => [$name, url('sandbox', ['name' => 'kuba'])]]);
+});
