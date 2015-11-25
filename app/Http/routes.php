@@ -28,5 +28,9 @@ Route::post('task', 'TaskController@store');
 Route::delete('task/{task}', 'TaskController@destroy');
 
 Route::get('sandbox/{name?}', function($name = null) {
-  return view('sandbox.sandbox', ['data' => [$name, url('sandbox', ['name' => 'kuba'])]]);
+  $data = [
+    'kuba',
+    url('sandbox', ['name' => 'kuba']),
+  ];
+  return view('sandbox.sandbox', compact('data'));
 });
