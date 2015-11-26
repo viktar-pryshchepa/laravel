@@ -34,3 +34,8 @@ Route::get('sandbox/{name?}', function($name = null) {
   ];
   return view('sandbox.sandbox', compact('data'));
 });
+
+// Press releases
+Route::get('news', 'PressReleasesController@index');
+Route::get('news/{id}', 'PressReleasesController@show');
+Route::get('news/create', 'PressReleasesController@create');
