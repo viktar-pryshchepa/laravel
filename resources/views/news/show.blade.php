@@ -13,3 +13,11 @@
         </div>
   </div>
 @endsection
+
+
+@section('navbar')
+  <ul>
+    <li><a href="{{ action('PressReleasesController@index') }}">All</a></li>
+    <li><a href="{{ action('PressReleasesController@edit', $release->id) }}">Edit</a></li>
+  </ul>
+@endsection

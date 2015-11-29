@@ -13,10 +13,17 @@
       </p>
     </div>
     @endforeach
+      {!! $releases->render() !!}
   @else
     <div class="lead">
       No data available
     </div>
   @endif
   </div>
+@endsection
+
+@section('navbar')
+  <ul>
+    <li><a href="{{ action('PressReleasesController@create') }}">Create</a></li>
+  </ul>
 @endsection

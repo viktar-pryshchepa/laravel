@@ -6,13 +6,13 @@ use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
-
+use App\Http\Requests\PressReleaseRequest;
 use \App\PressRelease;
 
 class PressReleasesController extends Controller
 {
     public function index() {
-        $releases = PressRelease::all();
+        $releases = PressRelease::latest()->simplePaginate(5);
         return view('news.index', compact('releases'));
     }
 
@@ -29,5 +29,24 @@ class PressReleasesController extends Controller
     public function create() {
 
         return view('news.create');
+    }
+
+    public function store(PressReleaseRequest $request) {
+
+        $input = $request->all();
+
+        $release = PressRelease::create($input);
+        return redirect('news');
+    }
+
+    public function edit($id) {
+        $release = PressRelease::findOrFail($id);
+        return view('news.edit', compact('release'));
+    }
+
+    public function update(PressReleaseRequest $request, $id) {
+        $release = PressRelease::findOrFail($id);
+        $release->update($request->all());
+        return redirect(action('PressReleasesController@show', $id));
     }
 }

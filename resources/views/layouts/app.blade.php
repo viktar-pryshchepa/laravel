@@ -12,7 +12,7 @@
 <body>
 <div class="container">
   <nav class="navbar navbar-default">
-    <!-- Navbar Contents -->
+    @yield('navbar')
   </nav>
 </div>
 

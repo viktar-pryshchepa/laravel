@@ -36,6 +36,10 @@ Route::get('sandbox/{name?}', function($name = null) {
 });
 
 // Press releases
-Route::get('news', 'PressReleasesController@index');
-Route::get('news/{id}', 'PressReleasesController@show');
-Route::get('news/create', 'PressReleasesController@create');
+//Route::get('news', 'PressReleasesController@index');
+//Route::get('news/create', 'PressReleasesController@create');
+//Route::post('news/create', 'PressReleasesController@store');
+//Route::get('news/{id}', 'PressReleasesController@show');
+//Route::get('news/{id}/edit', 'PressReleasesController@update');
+
+Route::resource('news', 'PressReleasesController');
