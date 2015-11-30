@@ -10,6 +10,16 @@ class PressRelease extends Model
 
     protected $fillable = [
         'title',
-        'body'
+        'body',
+        'user_id' //just for test
     ];
+
+  /**
+   * Relationship.
+   *
+   * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+   */
+  public function user() {
+    return $this->belongsTo(User::class);
+  }
 }

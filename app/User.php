@@ -46,4 +46,13 @@ class User extends Model implements AuthenticatableContract,
     {
         return $this->hasMany(Task::class);
     }
+
+  /**
+   * Relationship.
+   *
+   * @return \Illuminate\Database\Eloquent\Relations\HasMany
+   */
+    public function news() {
+      return $this->hasMany(PressRelease::class);
+    }
 }
