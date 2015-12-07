@@ -8,9 +8,16 @@ use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\PressReleaseRequest;
 use \App\PressRelease;
+use Illuminate\Support\Facades\Auth;
 
 class PressReleasesController extends Controller
 {
+
+    public function __construct() {
+
+      $this->middleware('auth', ['only' => 'create']);
+    }
+
     public function index() {
         $releases = PressRelease::latest()->simplePaginate(5);
         return view('news.index', compact('releases'));
@@ -32,10 +39,8 @@ class PressReleasesController extends Controller
     }
 
     public function store(PressReleaseRequest $request) {
-
-        $input = $request->all();
-
-        $release = PressRelease::create($input);
+        $release = new PressRelease($request->all());
+        Auth::user()->news()->save($release);
         return redirect('news');
     }
 
